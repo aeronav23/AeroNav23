@@ -112,36 +112,11 @@ async function fetchMetar(icaoRaw, resultBox) {
     return;
   }
 
-  resultBox.textContent = t("loadingMetar");
-
-  const directUrl =
-    `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`;
-
-  const proxyUrl =
-    `https://shrill-heart-dd01.timsolnysko2.workers.dev/?url=${encodeURIComponent(directUrl)}`;
-
-  try {
-    const response = await fetch(proxyUrl);
-
-    if (!response.ok) {
-      throw new Error(`Status ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (!data || data.length === 0) {
-      resultBox.textContent = t("metarNotFound");
-      return;
-    }
-
-    resultBox.textContent = JSON.stringify(data, null, 2);
-  } catch (error) {
-    resultBox.innerHTML = `
+  resultBox.innerHTML = `
 ${t("metarInsideError")}
 
 ${t("metarExternalHint")}
 `;
-  }
 }
 
 function openMetarExternal(inputId) {
@@ -158,6 +133,7 @@ function openMetarExternal(inputId) {
     "_blank"
   );
 }
+
 
 
 function createTopoLayer() {
