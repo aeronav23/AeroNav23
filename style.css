@@ -420,3 +420,47 @@ body.rtl .nav {
 body.rtl .brand {
   text-align: right;
 }
+
+@media (max-width: 760px) {
+  body {
+    overflow: auto;
+  }
+
+  .topbar {
+    height: auto;
+    position: sticky;
+    padding: 18px 22px;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  main {
+    position: static;
+    padding-bottom: 90px;
+  }
+
+  .panel {
+    margin: 24px auto;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .button-row .main-btn {
+    width: 100%;
+  }
+
+  footer {
+    position: sticky;
+    bottom: 0;
+  }
+}
