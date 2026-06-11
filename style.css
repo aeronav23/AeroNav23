@@ -1,0 +1,422 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: #07111f;
+  color: white;
+}
+
+body {
+  overflow: hidden;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  z-index: 100;
+  background: rgba(7, 17, 31, 0.95);
+  border-bottom: 1px solid #24324a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  backdrop-filter: blur(10px);
+}
+
+.brand-title {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+  font-size: 13px;
+  color: #9fb3d1;
+  margin-top: 2px;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav-btn,
+.main-btn,
+.tool {
+  border: 1px solid #31415f;
+  background: #101b2d;
+  color: white;
+  border-radius: 12px;
+  padding: 10px 13px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.nav-btn:hover,
+.main-btn:hover,
+.tool:hover {
+  background: #17263d;
+}
+
+.nav-btn.active,
+.tool.active {
+  background: #2563eb;
+  border-color: #3b82f6;
+}
+
+main {
+  position: absolute;
+  top: 76px;
+  left: 0;
+  right: 0;
+  bottom: 42px;
+}
+
+.page {
+  display: none;
+  height: 100%;
+  overflow: auto;
+}
+
+.page.active {
+  display: block;
+}
+
+.panel {
+  width: min(1100px, 94%);
+  margin: 26px auto;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 34px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.muted {
+  color: #9fb3d1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.card {
+  background: #101b2d;
+  border: 1px solid #24324a;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+}
+
+label {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 7px;
+  color: #d5deef;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  border: 1px solid #33415d;
+  background: #07111f;
+  color: white;
+  font-size: 16px;
+}
+
+.main-btn {
+  margin-top: 16px;
+  background: #2563eb;
+}
+
+.result {
+  margin-top: 16px;
+  padding: 15px;
+  min-height: 52px;
+  background: #07111f;
+  border: 1px solid #33415d;
+  border-radius: 12px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.big-result {
+  min-height: 180px;
+}
+
+.warning {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.map-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  background: #0b1220;
+}
+
+.map-sidebar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  bottom: 14px;
+  width: 310px;
+  z-index: 20;
+  background: rgba(7, 17, 31, 0.94);
+  border: 1px solid #31415f;
+  border-radius: 18px;
+  padding: 16px;
+  overflow: auto;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.check input {
+  width: auto;
+}
+
+.airport-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.airport-item {
+  padding: 10px;
+  border: 1px solid #31415f;
+  border-radius: 12px;
+  background: #101b2d;
+  cursor: pointer;
+}
+
+.airport-item:hover {
+  background: #17263d;
+}
+
+.airport-code {
+  font-weight: 800;
+}
+
+.airport-name {
+  color: #9fb3d1;
+  font-size: 13px;
+}
+
+.vfr-toolbar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: rgba(7, 17, 31, 0.94);
+  border: 1px solid #31415f;
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.tool {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  font-size: 18px;
+}
+
+#tooltip {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(20,20,20,.95);
+  color: white;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: opacity .12s;
+}
+
+#tooltip.show {
+  opacity: 1;
+}
+
+.compass {
+  position: absolute;
+  z-index: 25;
+  top: 50%;
+  left: 50%;
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(37,99,235,.85);
+  border-radius: 50%;
+  background: rgba(7,17,31,.2);
+  pointer-events: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.compass-cross::before,
+.compass-cross::after {
+  content: "";
+  position: absolute;
+  background: rgba(37,99,235,.85);
+}
+
+.compass-cross::before {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+}
+
+.compass-cross::after {
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+}
+
+.deg {
+  position: absolute;
+  background: rgba(7,17,31,.85);
+  border: 1px solid #3b82f6;
+  border-radius: 10px;
+  padding: 6px 9px;
+  font-weight: 800;
+}
+
+.deg.n {
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.deg.s {
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.deg.e {
+  right: -38px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.deg.w {
+  left: -38px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42px;
+  z-index: 100;
+  background: rgba(7,17,31,.96);
+  border-top: 1px solid #24324a;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  color: #9fb3d1;
+  font-size: 13px;
+}
+
+footer select {
+  width: auto;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.footer-note {
+  margin-left: auto;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    height: 110px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px 14px;
+  }
+
+  main {
+    top: 110px;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .nav-btn {
+    white-space: nowrap;
+  }
+
+  .map-sidebar {
+    width: calc(100% - 28px);
+    height: 260px;
+    bottom: auto;
+  }
+
+  .vfr-toolbar {
+    flex-direction: row;
+    overflow-x: auto;
+    right: 14px;
+  }
+
+  .footer-note {
+    display: none;
+  }
+}
+body.rtl {
+  direction: rtl;
+}
+
+body.rtl .nav {
+  direction: rtl;
+}
+
+body.rtl .brand {
+  text-align: right;
+}
