@@ -18,10 +18,7 @@ function openPage(pageId) {
   });
 
   setTimeout(() => {
-    if (pageId === "airportMap") {
-      initAirportMap();
-      if (airportMap) airportMap.updateSize();
-    }
+    
 
     if (pageId === "vfrPlanner") {
       initVfrMap();
@@ -595,8 +592,6 @@ function loadSavedLanguage() {
     changeLanguage();
   }
 
-  document.addEventListener("DOMContentLoaded", async () => {
-    await loadOurAirportsData();
-  })
+  
   
 }
