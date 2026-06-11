@@ -114,16 +114,17 @@ async function fetchMetar(icaoRaw, resultBox) {
 
   resultBox.textContent = t("loadingMetar");
 
-  const url = `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`;
+const directUrl =
+  `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`;
 
 const proxyUrl =
-`https://shrill-heart-dd01.timsolnysko2.workers.dev/?url=${encodeURIComponent(directUrl)}`;
+  `https://shrill-heart-dd01.timsolnysko2.workers.dev/?url=${encodeURIComponent(directUrl)}`;
 
 const response = await fetch(proxyUrl);
 
-    if (!response.ok) {
-      throw new Error(`Status ${response.status}`);
-    }
+if (!response.ok) {
+  throw new Error(`Status ${response.status}`);
+}
 
     const data = await response.json();
 
