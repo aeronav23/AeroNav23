@@ -19,10 +19,10 @@
     </div>
 
     <nav class="nav">
-      <button class="nav-btn active" data-page="home" data-i18n="home">Home</button>
+      <button class="nav-btn active" data-page="home" data-i18n="home">Главная</button>
       <button class="nav-btn" data-page="metar" data-i18n="metar">METAR</button>
-      <button class="nav-btn" data-page="vfrPlanner" data-i18n="vfrPlanner">VFR Planner</button>
-      <button class="nav-btn" data-page="about" data-i18n="about">About</button>
+      <button class="nav-btn" data-page="vfrPlanner" data-i18n="vfrPlanner">VFR Планер</button>
+      <button class="nav-btn" data-page="about" data-i18n="about">О сайте</button>
     </nav>
   </header>
 
@@ -31,7 +31,7 @@
       <div class="panel">
         <h1 data-i18n="mainTitle">AeroNav23 Flight Tools</h1>
         <p class="muted" data-i18n="mainDescription">
-          Инструменты для авиасимуляторов: конвертеры, METAR, карта аэропортов и VFR Planner.
+          Инструменты для авиасимуляторов: конвертеры, METAR и VFR Planner.
         </p>
 
         <div class="grid">
@@ -65,18 +65,13 @@
             <input id="quickIcao" maxlength="4" data-i18n-placeholder="icaoPlaceholder" placeholder="OMDB">
 
             <div class="button-row">
-              <button class="main-btn" onclick="quickMetar()" data-i18n="getMetar">
-                Получить METAR
-              </button>
-
+              <button class="main-btn" onclick="quickMetar()" data-i18n="getMetar">Получить METAR</button>
               <button class="main-btn secondary" onclick="openMetarExternal('quickIcao')" data-i18n="openOfficialMetar">
                 Открыть официальный METAR
               </button>
             </div>
 
-            <pre id="quickMetarResult" class="result" data-i18n="metarResult">
-METAR появится здесь
-            </pre>
+            <pre id="quickMetarResult" class="result" data-i18n="metarResult">METAR появится здесь</pre>
           </div>
         </div>
       </div>
@@ -94,70 +89,26 @@ METAR появится здесь
           <input id="icaoInput" maxlength="4" data-i18n-placeholder="icaoPlaceholderLong" placeholder="Например: OMDB">
 
           <div class="button-row">
-            <button class="main-btn" onclick="getMetar()" data-i18n="getMetar">
-              Получить METAR
-            </button>
-
+            <button class="main-btn" onclick="getMetar()" data-i18n="getMetar">Получить METAR</button>
             <button class="main-btn secondary" onclick="openMetarExternal('icaoInput')" data-i18n="openOfficialMetar">
               Открыть официальный METAR
             </button>
           </div>
 
-          <pre id="metarResult" class="result big-result" data-i18n="metarResult">
-METAR появится здесь
-          </pre>
+          <pre id="metarResult" class="result big-result" data-i18n="metarResult">METAR появится здесь</pre>
         </div>
-      </div>
-    </section>
-
- 
-      <aside class="map-sidebar">
-        <h2 data-i18n="airportMap">Airport Map</h2>
-
-        <input id="airportSearch" data-i18n-placeholder="airportSearchPlaceholder" placeholder="ICAO / IATA / Name">
-
-        <label class="check">
-          <input type="checkbox" id="filterLarge" checked>
-          <span data-i18n="largeAirports">Large airports</span>
-        </label>
-
-        <label class="check">
-          <input type="checkbox" id="filterMedium" checked>
-          <span data-i18n="mediumAirports">Medium airports</span>
-        </label>
-
-        <label class="check">
-          <input type="checkbox" id="filterSmall">
-          <span data-i18n="smallAirports">Small airports</span>
-        </label>
-
-        <button class="main-btn full" onclick="toggleCompass('airport')" data-i18n="compassOverlay">
-          Градусная шкала
-        </button>
-
-        <div id="airportList" class="airport-list"></div>
-      </aside>
-
-      <div id="airportMapCanvas" class="map"></div>
-
-      <div id="airportCompass" class="compass hidden">
-        <div class="deg n">360 / N</div>
-        <div class="deg e">090 / E</div>
-        <div class="deg s">180 / S</div>
-        <div class="deg w">270 / W</div>
-        <div class="compass-cross"></div>
       </div>
     </section>
 
     <section id="vfrPlanner" class="page map-page">
       <div id="vfrToolbar" class="vfr-toolbar">
-        <button class="tool" id="btnDraw" data-i18n-title="tipDraw" data-tip="Линия: клик — точки, двойной клик — закончить">✏️</button>
-        <button class="tool" id="btnEdit" data-i18n-title="tipEdit" data-tip="Редактировать точки">🧩</button>
+        <button class="tool" id="btnDraw" data-i18n-title="tipDraw" data-tip="Линия">✏️</button>
+        <button class="tool" id="btnEdit" data-i18n-title="tipEdit" data-tip="Редактировать">🧩</button>
         <button class="tool" id="btnDelPt" data-i18n-title="tipDeletePoint" data-tip="Удалить точку">❌</button>
-        <button class="tool" id="btnMove" data-i18n-title="tipMove" data-tip="Передвинуть линию">✋</button>
+        <button class="tool" id="btnMove" data-i18n-title="tipMove" data-tip="Передвинуть">✋</button>
         <button class="tool" id="btnDelete" data-i18n-title="tipDeleteLine" data-tip="Удалить линию">🗑</button>
         <button class="tool" id="btnClear" data-i18n-title="tipClear" data-tip="Очистить всё">🔥</button>
-        <button class="tool" id="btnCompass" onclick="toggleCompass('vfr')" data-i18n-title="tipCompass" data-tip="Градусная шкала">🧭</button>
+        <button class="tool" onclick="toggleCompass('vfr')" data-i18n-title="tipCompass" data-tip="Градусная шкала">🧭</button>
       </div>
 
       <div id="vfrMapCanvas" class="map"></div>
@@ -180,17 +131,10 @@ METAR появится здесь
         <div class="card">
           <h2>AeroNav23 Flight Tools</h2>
           <p data-i18n="aboutText">
-            AeroNav23 Flight Tools — бесплатный набор инструментов для авиасимуляторов:
-            METAR, конвертеры, карта аэропортов и VFR Planner.
+            AeroNav23 Flight Tools — бесплатный набор инструментов для авиасимуляторов: METAR, конвертеры и VFR Planner.
           </p>
           <p class="warning" data-i18n="simulationOnly">
             ⚠️ Только для симуляторов. Не использовать для реальной авиации.
-          </p>
-        </div>
-
-     
-       
-          
           </p>
         </div>
 
@@ -212,11 +156,7 @@ METAR появится здесь
     <select id="languageSelect" onchange="changeLanguage()">
       <option value="ru">Русский</option>
       <option value="en">English</option>
-      <option value="ar">العربية</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
       <option value="de">Deutsch</option>
-      <option value="kk">Қазақша</option>
     </select>
 
     <span class="footer-note">AeroNav23 Flight Tools v1.0</span>
@@ -225,4 +165,3 @@ METAR появится здесь
   <script src="script.js"></script>
 </body>
 </html>
-
