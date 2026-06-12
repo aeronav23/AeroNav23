@@ -1,10 +1,3 @@
-/* =========================
-   AeroNav23 Flight Tools
-   script.js
-========================= */
-
-/* ---------- Navigation ---------- */
-
 function openPage(pageId) {
   document.querySelectorAll(".page").forEach(page => {
     page.classList.remove("active");
@@ -18,8 +11,6 @@ function openPage(pageId) {
   });
 
   setTimeout(() => {
-    
-
     if (pageId === "vfrPlanner") {
       initVfrMap();
       if (vfrMap) vfrMap.updateSize();
@@ -34,8 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadSavedLanguage();
 });
-
-/* ---------- Converter ---------- */
 
 function convertValue() {
   const type = document.getElementById("convertType").value;
@@ -57,40 +46,32 @@ function convertValue() {
       result = value * 0.3048;
       text = `${value} ft = ${result.toFixed(2)} m`;
       break;
-
     case "m-ft":
       result = value / 0.3048;
       text = `${value} m = ${result.toFixed(2)} ft`;
       break;
-
     case "kg-t":
       result = value / 1000;
       text = `${value} kg = ${result.toFixed(3)} t`;
       break;
-
     case "t-kg":
       result = value * 1000;
       text = `${value} t = ${result.toFixed(0)} kg`;
       break;
-
     case "hpa-inhg":
       result = value * 0.0295299830714;
       text = `${value} hPa = ${result.toFixed(2)} inHg`;
       break;
-
     case "inhg-hpa":
       result = value / 0.0295299830714;
       text = `${value} inHg = ${result.toFixed(0)} hPa`;
       break;
-
     default:
       text = t("unknownConversion");
   }
 
   resultBox.textContent = text;
 }
-
-/* ---------- METAR ---------- */
 
 async function quickMetar() {
   const input = document.getElementById("quickIcao");
@@ -112,11 +93,7 @@ async function fetchMetar(icaoRaw, resultBox) {
     return;
   }
 
-  resultBox.innerHTML = `
-${t("metarInsideError")}
-
-${t("metarExternalHint")}
-`;
+  resultBox.innerHTML = `${t("metarInsideError")}\n\n${t("metarExternalHint")}`;
 }
 
 function openMetarExternal(inputId) {
@@ -134,8 +111,6 @@ function openMetarExternal(inputId) {
   );
 }
 
-
-
 function createTopoLayer() {
   return new ol.layer.Tile({
     source: new ol.source.OSM({
@@ -143,8 +118,6 @@ function createTopoLayer() {
     })
   });
 }
-
-/* ---------- VFR Planner ---------- */
 
 let vfrMap;
 let vfrDrawSource;
@@ -316,25 +289,20 @@ function setupTooltips() {
 }
 
 function toggleCompass(type) {
-  const id = type === "airport" ? "airportCompass" : "vfrCompass";
+  const id = "vfrCompass";
   const compass = document.getElementById(id);
   if (compass) compass.classList.toggle("hidden");
 }
-
-/* ---------- Translations ---------- */
 
 const translations = {
   ru: {
     subtitle: "Flight Tools",
     home: "Главная",
     metar: "METAR",
-    airportMap: "Карта аэропортов",
     vfrPlanner: "VFR Планер",
     about: "О сайте",
-
     mainTitle: "AeroNav23 Flight Tools",
-    mainDescription: "Инструменты для авиасимуляторов: конвертеры, METAR, карта аэропортов и VFR Planner.",
-
+    mainDescription: "Инструменты для авиасимуляторов: конвертеры, METAR и VFR Planner.",
     converter: "Конвертер",
     conversionType: "Тип конвертации",
     value: "Значение",
@@ -347,7 +315,6 @@ const translations = {
     inhgToHpa: "inHg → hPa",
     convertBtn: "Конвертировать",
     convertResult: "Результат появится здесь",
-
     quickMetar: "Быстрый METAR",
     icao: "ICAO",
     icaoCode: "ICAO-код",
@@ -357,29 +324,16 @@ const translations = {
     openOfficialMetar: "Открыть официальный METAR",
     metarResult: "METAR появится здесь",
     metarDescription: "Введите ICAO-код аэропорта, например OMDB, EGLL, KLAX, URSS.",
-
-    largeAirports: "Large airports",
-    mediumAirports: "Medium airports",
-    smallAirports: "Small airports",
-    airportSearchPlaceholder: "ICAO / IATA / Name",
-    compassOverlay: "Градусная шкала",
-
-    aboutText: "AeroNav23 Flight Tools — бесплатный набор инструментов для авиасимуляторов: METAR, конвертеры, карта аэропортов и VFR Planner.",
+    aboutText: "AeroNav23 Flight Tools — бесплатный набор инструментов для авиасимуляторов: METAR, конвертеры и VFR Planner.",
     simulationOnly: "⚠️ Только для симуляторов. Не использовать для реальной авиации.",
-    author: "Автор",
-    authorText: "Тут можно написать имя, ник, GitHub, TikTok или Discord.",
     dataSources: "Использовано",
     language: "Language:",
-
     enterNumber: "Введите число.",
     unknownConversion: "Неизвестный тип конвертации.",
     enterIcao: "Введите ICAO-код из 4 букв.",
-    loadingMetar: "Загрузка METAR...",
-    metarNotFound: "Аэропорт не найден или METAR недоступен.",
-    metarInsideError: "Не удалось получить METAR внутри сайта.",
+    metarInsideError: "METAR внутри сайта временно отключён.",
     metarExternalHint: "Нажмите кнопку «Открыть официальный METAR».",
     clearConfirm: "Удалить все линии?",
-
     tipDraw: "Линия: клик — точки, двойной клик — закончить",
     tipEdit: "Редактировать точки",
     tipDeletePoint: "Удалить точку",
@@ -388,18 +342,14 @@ const translations = {
     tipClear: "Очистить всё",
     tipCompass: "Градусная шкала"
   },
-
   en: {
     subtitle: "Flight Tools",
     home: "Home",
     metar: "METAR",
-    airportMap: "Airport Map",
     vfrPlanner: "VFR Planner",
     about: "About",
-
     mainTitle: "AeroNav23 Flight Tools",
-    mainDescription: "Tools for flight simulators: converters, METAR, airport map and VFR Planner.",
-
+    mainDescription: "Tools for flight simulators: converters, METAR and VFR Planner.",
     converter: "Converter",
     conversionType: "Conversion type",
     value: "Value",
@@ -412,7 +362,6 @@ const translations = {
     inhgToHpa: "inHg → hPa",
     convertBtn: "Convert",
     convertResult: "Result will appear here",
-
     quickMetar: "Quick METAR",
     icao: "ICAO",
     icaoCode: "ICAO code",
@@ -422,29 +371,16 @@ const translations = {
     openOfficialMetar: "Open official METAR",
     metarResult: "METAR will appear here",
     metarDescription: "Enter airport ICAO code, for example OMDB, EGLL, KLAX, URSS.",
-
-    largeAirports: "Large airports",
-    mediumAirports: "Medium airports",
-    smallAirports: "Small airports",
-    airportSearchPlaceholder: "ICAO / IATA / Name",
-    compassOverlay: "Compass overlay",
-
-    aboutText: "AeroNav23 Flight Tools is a free toolkit for flight simulators: METAR, converters, airport map and VFR Planner.",
+    aboutText: "AeroNav23 Flight Tools is a free toolkit for flight simulators: METAR, converters and VFR Planner.",
     simulationOnly: "⚠️ Simulation use only. Not for real-world aviation.",
-    author: "Author",
-    authorText: "You can write your name, nickname, GitHub, TikTok or Discord here.",
     dataSources: "Data sources",
     language: "Language:",
-
     enterNumber: "Enter a number.",
     unknownConversion: "Unknown conversion type.",
     enterIcao: "Enter a 4-letter ICAO code.",
-    loadingMetar: "Loading METAR...",
-    metarNotFound: "Airport not found or METAR unavailable.",
-    metarInsideError: "Could not get METAR inside the website.",
+    metarInsideError: "METAR inside the website is temporarily disabled.",
     metarExternalHint: "Press the “Open official METAR” button.",
     clearConfirm: "Delete all lines?",
-
     tipDraw: "Line: click to add points, double-click to finish",
     tipEdit: "Edit points",
     tipDeletePoint: "Delete point",
@@ -453,18 +389,14 @@ const translations = {
     tipClear: "Clear all",
     tipCompass: "Compass overlay"
   },
-
   de: {
     subtitle: "Flugwerkzeuge",
     home: "Startseite",
     metar: "METAR",
-    airportMap: "Flughafenkarte",
     vfrPlanner: "VFR-Planer",
     about: "Über",
-
     mainTitle: "AeroNav23 Flight Tools",
-    mainDescription: "Werkzeuge für Flugsimulatoren: Umrechner, METAR, Flughafenkarte und VFR-Planer.",
-
+    mainDescription: "Werkzeuge für Flugsimulatoren: Umrechner, METAR und VFR-Planer.",
     converter: "Umrechner",
     conversionType: "Umrechnungstyp",
     value: "Wert",
@@ -477,7 +409,6 @@ const translations = {
     inhgToHpa: "inHg → hPa",
     convertBtn: "Umrechnen",
     convertResult: "Ergebnis erscheint hier",
-
     quickMetar: "Schnelles METAR",
     icao: "ICAO",
     icaoCode: "ICAO-Code",
@@ -487,29 +418,16 @@ const translations = {
     openOfficialMetar: "Offizielles METAR öffnen",
     metarResult: "METAR erscheint hier",
     metarDescription: "Geben Sie den ICAO-Code des Flughafens ein, zum Beispiel OMDB, EGLL, KLAX, URSS.",
-
-    largeAirports: "Große Flughäfen",
-    mediumAirports: "Mittlere Flughäfen",
-    smallAirports: "Kleine Flugplätze",
-    airportSearchPlaceholder: "ICAO / IATA / Name",
-    compassOverlay: "Kompass-Overlay",
-
-    aboutText: "AeroNav23 Flight Tools ist ein kostenloses Toolkit für Flugsimulatoren: METAR, Umrechner, Flughafenkarte und VFR-Planer.",
+    aboutText: "AeroNav23 Flight Tools ist ein kostenloses Toolkit für Flugsimulatoren: METAR, Umrechner und VFR-Planer.",
     simulationOnly: "⚠️ Nur für Simulatoren. Nicht für echte Luftfahrt verwenden.",
-    author: "Autor",
-    authorText: "Hier können Name, Nickname, GitHub, TikTok oder Discord stehen.",
     dataSources: "Datenquellen",
     language: "Language:",
-
     enterNumber: "Geben Sie eine Zahl ein.",
     unknownConversion: "Unbekannter Umrechnungstyp.",
     enterIcao: "Geben Sie einen 4-stelligen ICAO-Code ein.",
-    loadingMetar: "METAR wird geladen...",
-    metarNotFound: "Flughafen nicht gefunden oder METAR nicht verfügbar.",
-    metarInsideError: "METAR konnte auf der Website nicht geladen werden.",
+    metarInsideError: "METAR auf der Website ist vorübergehend deaktiviert.",
     metarExternalHint: "Drücken Sie die Schaltfläche „Offizielles METAR öffnen“.",
     clearConfirm: "Alle Linien löschen?",
-
     tipDraw: "Linie: Klicken für Punkte, Doppelklick zum Beenden",
     tipEdit: "Punkte bearbeiten",
     tipDeletePoint: "Punkt löschen",
@@ -519,13 +437,6 @@ const translations = {
     tipCompass: "Kompass-Overlay"
   }
 };
-
-/* Автозаполнение остальных языков английским,
-   чтобы сайт не ломался, пока переводы не готовы */
-translations.es = { ...translations.en, subtitle: "Herramientas de vuelo", home: "Inicio", airportMap: "Mapa de aeropuertos", about: "Acerca de" };
-translations.fr = { ...translations.en, subtitle: "Outils de vol", home: "Accueil", airportMap: "Carte des aéroports", about: "À propos" };
-translations.ar = { ...translations.en, subtitle: "أدوات الطيران", home: "الرئيسية", airportMap: "خريطة المطارات", about: "حول" };
-translations.kk = { ...translations.en, subtitle: "Ұшу құралдары", home: "Басты бет", airportMap: "Әуежайлар картасы", about: "Сайт туралы" };
 
 let currentLang = "ru";
 
@@ -554,9 +465,6 @@ function changeLanguage() {
     if (dict[key]) el.setAttribute("data-tip", dict[key]);
   });
 
-  document.body.classList.toggle("rtl", currentLang === "ar");
-  document.documentElement.lang = currentLang;
-
   localStorage.setItem("aeronav23_lang", currentLang);
 }
 
@@ -564,12 +472,11 @@ function loadSavedLanguage() {
   const saved = localStorage.getItem("aeronav23_lang") || "ru";
   const select = document.getElementById("languageSelect");
 
-  if (select) {
+  if (select && translations[saved]) {
     select.value = saved;
     currentLang = saved;
     changeLanguage();
   }
-
-  
-  
 }
+
+
