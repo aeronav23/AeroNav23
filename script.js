@@ -85,16 +85,7 @@ async function getMetar() {
   await fetchMetar(input.value, result);
 }
 
-async function fetchMetar(icaoRaw, resultBox) {
-  const icao = icaoRaw.trim().toUpperCase();
 
-  if (icao.length !== 4) {
-    resultBox.textContent = t("enterIcao");
-    return;
-  }
-
-  resultBox.innerHTML = `${t("metarInsideError")}\n\n${t("metarExternalHint")}`;
-}
 
 function openMetarExternal(inputId) {
   const input = document.getElementById(inputId);
